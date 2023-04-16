@@ -20,4 +20,4 @@ Route::get('/', function () {
 });
 */
 
-Route::get('/folders/{id}/task', [TaskController::class, 'index'])->name('tasks.index');
+Route::get('/folders/{id}/tasks', [TaskController::class, 'index'])->name('tasks.index');
