@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class TasksTableSeeder extends Seeder
 {
@@ -19,7 +20,7 @@ class TasksTableSeeder extends Seeder
                 'folder_id' => 1,
                 'title' => "サンプルタスク{$num}",
                 'status' => $num,
-                'die_date' => Carbon::now()->addDay($num),
+                'due_date' => Carbon::now()->addDay($num),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
