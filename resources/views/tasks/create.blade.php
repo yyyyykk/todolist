@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('styles')
-    @include('share.flatpickr.styles')
+    @include('share.flatpickr.style')
 @endsection
 
 @section('content')
@@ -18,7 +18,7 @@
                                 @endforeach
                             </div>
                         @endif
-                        <form action="{{ route('tasks.create', ['id' => $folder_id]) }}" method="POST">
+                        <form action="{{ route('tasks.create', ['folder' => $folder_id]) }}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="title">タイトル</label>

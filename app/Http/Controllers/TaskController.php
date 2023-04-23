@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Folder;
 use App\Models\Task;
 use App\Http\Requests\CreateTask;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\EditTask;
 
 class TaskController extends Controller
 {
@@ -59,9 +61,7 @@ class TaskController extends Controller
 
         $folder->tasks()->save($task);
 
-        return redirect()->route('tasks.index', [
-            'id' => $folder->id,
-        ]);
+        return redirect()->route('tasks.index', [$folder->id]);
     }
 
     /**
@@ -99,7 +99,7 @@ class TaskController extends Controller
         $task->save();
 
         return redirect()->route('tasks.index', [
-            'id' => $task->folder_id,
+            'folder' => $task->folder_id,
         ]);
     }
 

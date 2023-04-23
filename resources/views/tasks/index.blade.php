@@ -14,7 +14,7 @@
                     <div class="list-group">
                         @foreach($folders as $folder)
                         <a
-                            href="{{ route('tasks.index', ['id' => $folder->id]) }}"
+                            href="{{ route('tasks.index', [$folder->id]) }}"
                             class="list-group-item {{ $current_folder_id === $folder->id ? 'active' : '' }}"
                         >
                             {{ $folder->title }}
@@ -28,7 +28,7 @@
                     <div class="panel-heading">タスク</div>
                     <div class="panel-body">
                         <div class="text-right">
-                            <a href="{{ route('tasks.create', ['id' => $current_folder_id]) }}" class="btn btn-default btn-block">
+                            <a href="{{ route('tasks.create', ['folder' => $current_folder_id]) }}" class="btn btn-default btn-block">
                                 タスクを追加する
                             </a>
                         </div>
@@ -47,10 +47,20 @@
                             <tr>
                                 <td>{{ $task->title }}</td>
                                 <td>
-                                    <span class="label {{ $task->status_class }}">{{ $task->status_label }}</span>
+                                    <span class="label {{ $task->status_class }}">
+                                        @if($task->status == 1)
+                                            未着手
+                                        @endif
+                                        @if($task->status == 2)
+                                            着手中
+                                        @endif
+                                        @if($task->status == 3)
+                                            完了
+                                        @endif
+                                    </span>
                                 </td>
                                 <td>{{ $task->formatted_due_date }}</td>
-                                <td><a href="{{ route('tasks.edit', ['id' => $task->folder_id, 'task_id' => $task->id]) }}">編集</a></td>
+                                <td><a href="{{ route('tasks.edit', ['folder' => $task->folder_id, 'task' => $task->id]) }}">編集</a></td>
                             </tr>
                             @endforeach
                         </tbody>
